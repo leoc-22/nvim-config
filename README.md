@@ -1,6 +1,6 @@
 # my neovim config
 
-## Install Kickstart
+## Install
 
 Neovim's configurations are located under the following paths, depending on your OS:
 
