@@ -13,6 +13,7 @@ require('lazy').setup({
   require 'plugins/mini',
   require 'plugins/treesitter',
   require 'plugins/completion',
+  require 'plugins/oil',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
