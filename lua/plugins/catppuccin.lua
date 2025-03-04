@@ -10,9 +10,14 @@ return {
 
     config = function()
       require('catppuccin').setup {
+        integrations = {
+          blink_cmp = true,
+          gitsigns = true,
+          treesitter = true,
+        },
         color_overrides = {
           mocha = {
-            base = '#000000',
+            -- base = '#000000',
             -- mantle = '#000000',
             -- crust = '#000000',
           },
