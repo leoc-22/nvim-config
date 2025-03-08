@@ -1,4 +1,5 @@
 local set = vim.opt_local
 
-set.number = true
-set.relativenumber = true
+set.expandtab = false
+set.shiftwidth = 4
+set.tabstop = 4
