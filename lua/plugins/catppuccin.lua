@@ -27,6 +27,7 @@ return {
             return {
               LineNr = { fg = 'gray' },
               CursorLineNr = { fg = 'white' },
+              WinSeparator = { fg = 'gray' }
             }
           end,
         },

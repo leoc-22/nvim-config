@@ -15,7 +15,6 @@ require('lazy').setup({
   require 'plugins.blink',
   require 'plugins.oil',
   require 'plugins.markdown',
-  require 'plugins.colorful-winsep',
   require 'plugins.dropbar',
   require 'plugins.lualine'
   --   require 'plugins/cmp'
