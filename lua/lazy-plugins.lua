@@ -16,7 +16,8 @@ require('lazy').setup({
   require 'plugins.oil',
   require 'plugins.markdown',
   require 'plugins.dropbar',
-  require 'plugins.lualine'
+  require 'plugins.lualine',
+  require 'plugins.diff-view'
   --   require 'plugins/cmp'
 }, {
   ui = {
