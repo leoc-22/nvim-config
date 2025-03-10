@@ -19,6 +19,7 @@ require('lazy').setup({
   require 'plugins.lualine',
   require 'plugins.diff-view',
   require 'plugins.lsp-lines',
+  require 'plugins.trouble',
   --   require 'plugins/cmp'
 }, {
   ui = {
