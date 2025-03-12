@@ -14,6 +14,10 @@ return {
           blink_cmp = true,
           gitsigns = true,
           treesitter = true,
+          dropbar = {
+            enabled = true,
+            color_mode = true,
+          },
         },
         color_overrides = {
           mocha = {
