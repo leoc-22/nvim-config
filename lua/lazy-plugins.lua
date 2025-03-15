@@ -20,6 +20,7 @@ require('lazy').setup({
   require 'plugins.diff-view',
   require 'plugins.lsp-lines',
   require 'plugins.trouble',
+  require 'plugins.indent-blankline'
   --   require 'plugins/cmp'
 }, {
   ui = {
