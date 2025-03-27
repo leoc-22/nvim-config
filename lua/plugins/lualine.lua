@@ -34,7 +34,8 @@ return {
       options = {
         theme = bubbles_theme,
         component_separators = '',
-        section_separators = { left = '', right = '' },
+        section_separators = '',
+        -- section_separators = { left = '', right = '' },
       },
       sections = {
         lualine_a = { { 'mode', right_padding = 2 } },
