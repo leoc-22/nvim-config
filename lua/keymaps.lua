@@ -11,6 +11,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>')
 vim.keymap.set('n', '<C-A>', 'ggVG', { noremap = true })
 
+-- Disable the default LSP key mappings introduced in Neovim 0.11.0
+vim.keymap.del('n', 'grn') -- Disable rename mapping
+vim.keymap.del('n', 'grr') -- Disable references mapping
+vim.keymap.del('n', 'gri') -- Disable implementation mapping
+vim.keymap.del('n', 'gra') -- Disable code action mapping
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
