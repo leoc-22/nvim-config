@@ -24,6 +24,7 @@ require('lazy').setup({
   require 'plugins.trouble',
   require 'plugins.indent-blankline',
   require 'plugins.harpoon',
+  require 'plugins.vim-sneak',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
