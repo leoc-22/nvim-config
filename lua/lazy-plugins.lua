@@ -1,7 +1,8 @@
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   --   require 'plugins/cmp'
   require 'plugins.gitsigns',
@@ -25,6 +26,7 @@ require('lazy').setup({
   require 'plugins.indent-blankline',
   require 'plugins.harpoon',
   require 'plugins.vim-sneak',
+  require 'plugins.no-neck-pain',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
