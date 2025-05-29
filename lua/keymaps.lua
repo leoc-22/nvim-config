@@ -1,5 +1,5 @@
 -- default to open netrw
-vim.keymap.set('n', '<C-e>', ':Explore<CR>')
+-- vim.keymap.set('n', '<C-e>', ':Explore<CR>')
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -38,10 +38,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- keymap for doing the above
 local job_id = 0
-vim.keymap.set('n', "<space>tt", function()
+vim.keymap.set('n', '<space>tt', function()
   vim.cmd.vnew()
   vim.cmd.term()
-  vim.cmd.wincmd("J")
+  vim.cmd.wincmd 'J'
   vim.api.nvim_win_set_height(0, 10)
 
   job_id = vim.bo.channel

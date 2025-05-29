@@ -21,6 +21,14 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvim
       require('mini.pairs').setup()
 
+      require('mini.files').setup {
+        windows = {
+          preview = true,
+        },
+      }
+
+      vim.keymap.set('n', '<C-e>', require('mini.files').open, { desc = 'Open file explorer (mini.files)' })
+
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
