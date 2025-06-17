@@ -52,4 +52,21 @@ vim.keymap.set('n', '<space>example', function()
   vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
 end)
 
+-- Write and quit typos
+-- local typos = { 'W', 'Wq', 'WQ', 'Wqa', 'WQa', 'WQA', 'WqA', 'Q', 'Qa', 'QA' }
+-- for _, cmd in ipairs(typos) do
+--   vim.api.nvim_create_user_command(cmd, function(opts)
+--     vim.api.nvim_cmd({
+--       cmd = cmd:lower(),
+--       bang = opts.bang,
+--       mods = { noautocmd = true },
+--     }, {})
+--   end, { bang = true })
+-- end
+
+local typos = { 'W', 'Wq', 'WQ', 'Wqa', 'WQa', 'WQA', 'WqA', 'Q', 'Qa', 'QA' }
+for _, cmd in ipairs(typos) do
+  vim.keymap.set('ca', cmd, cmd:lower())
+end
+
 -- vim: ts=2 sts=2 sw=2 et
