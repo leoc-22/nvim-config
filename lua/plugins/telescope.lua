@@ -68,7 +68,10 @@ return {
               '--files',
               '--hidden',
               '--glob', '!**/.git/*',
-              '--glob', '!**/node_modules/*' },
+              '--glob', '!**/node_modules/*',
+              '--glob', '!**/dist/*',
+              '--glob', '!**/build/*',
+            },
           },
         },
 

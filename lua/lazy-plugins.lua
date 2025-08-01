@@ -2,7 +2,8 @@
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'NMAC427/guess-indent.nvim',
 
   --   require 'plugins/cmp'
   require 'plugins.gitsigns',
@@ -25,7 +26,6 @@ require('lazy').setup({
   require 'plugins.trouble',
   require 'plugins.indent-blankline',
   require 'plugins.harpoon',
-  require 'plugins.vim-sneak',
   require 'plugins.no-neck-pain',
 }, {
   ui = {

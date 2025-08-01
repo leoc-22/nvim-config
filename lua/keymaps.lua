@@ -18,6 +18,7 @@ vim.keymap.del('n', 'grn') -- Disable rename mapping
 vim.keymap.del('n', 'grr') -- Disable references mapping
 vim.keymap.del('n', 'gri') -- Disable implementation mapping
 vim.keymap.del('n', 'gra') -- Disable code action mapping
+vim.keymap.del('n', 'grt') -- Disable type definition mapping
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
