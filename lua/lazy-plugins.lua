@@ -18,7 +18,7 @@ require('lazy').setup({
   require 'plugins.treesitter',
   require 'plugins.blink',
   require 'plugins.oil',
-  require 'plugins.markdown',
+  -- require 'plugins.markview',
   require 'plugins.dropbar',
   require 'plugins.lualine',
   require 'plugins.diff-view',
