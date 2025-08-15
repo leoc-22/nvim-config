@@ -168,6 +168,8 @@ return {
         html = {},
         terraformls = {},
         jsonls = {},
+        yamlls = {},
+        helm_ls = {},
 
         lua_ls = {
           -- cmd = { ... },
