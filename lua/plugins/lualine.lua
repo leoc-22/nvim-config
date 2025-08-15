@@ -39,11 +39,19 @@ return {
       },
       sections = {
         lualine_a = { { 'mode', right_padding = 2 } },
-        lualine_b = { 'filename', 'branch' },
+        lualine_b = {
+          {
+            'filename',
+            file_status = true,
+            newfile_status = true,
+            path = 3
+          },
+          'branch'
+        },
         lualine_c = {
           '%=', --[[ add your center compoentnts here in place of this comment ]]
         },
-        lualine_x = {},
+        lualine_x = { 'lsp_status' },
         lualine_y = { 'filetype', 'progress' },
         lualine_z = {
           { 'location', left_padding = 2 },
