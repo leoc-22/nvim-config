@@ -44,12 +44,23 @@ return {
             'filename',
             file_status = true,
             newfile_status = true,
-            path = 3
+            path = 0,
           },
-          'branch'
+          {
+            'branch',
+            fmt = function(str)
+              local max = 20 -- <<< set your limit here
+              if not str or str == '' then return '' end
+              if vim.fn.strdisplaywidth(str) <= max then return str end
+              return vim.fn.strcharpart(str, 0, max) .. '…'
+            end,
+          }
         },
         lualine_c = {
-          '%=', --[[ add your center compoentnts here in place of this comment ]]
+          '%=',
+          function()
+            return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+          end,
         },
         lualine_x = { 'lsp_status' },
         lualine_y = { 'filetype', 'progress' },
