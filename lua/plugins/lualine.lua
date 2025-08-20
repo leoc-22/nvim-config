@@ -28,7 +28,9 @@ local bubbles_theme = {
 
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
+  },
   config = function()
     require('lualine').setup {
       options = {
@@ -54,6 +56,9 @@ return {
               if vim.fn.strdisplaywidth(str) <= max then return str end
               return vim.fn.strcharpart(str, 0, max) .. '…'
             end,
+          },
+          {
+            'diagnostics'
           }
         },
         lualine_c = {
@@ -62,8 +67,8 @@ return {
             return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
           end,
         },
-        lualine_x = { 'lsp_status' },
-        lualine_y = { 'filetype', 'progress' },
+        lualine_x = {},
+        lualine_y = { 'lsp_status', 'filetype', 'progress' },
         lualine_z = {
           { 'location', left_padding = 2 },
         },
@@ -71,7 +76,12 @@ return {
       inactive_sections = {
         lualine_a = { 'filename' },
         lualine_b = {},
-        lualine_c = {},
+        lualine_c = {
+          '%=',
+          function()
+            return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+          end,
+        },
         lualine_x = {},
         lualine_y = {},
         lualine_z = { 'location' },
