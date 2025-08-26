@@ -24,6 +24,9 @@ return {
       require('mini.files').setup {
         windows = {
           preview = true,
+          max_number = 3,
+          width_focus = 25,
+          width_preview = 50,
         },
       }
 
