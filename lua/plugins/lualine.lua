@@ -67,7 +67,9 @@ return {
             return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
           end,
         },
-        lualine_x = {},
+        lualine_x = {
+          { require('harpoon_files').lualine_component },
+        },
         lualine_y = { 'lsp_status', 'filetype', 'progress' },
         lualine_z = {
           { 'location', left_padding = 2 },

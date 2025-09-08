@@ -26,6 +26,7 @@ require('lazy').setup({
   require 'plugins.trouble',
   require 'plugins.indent-blankline',
   require 'plugins.harpoon',
+  require 'plugins.harpoon-files',
   require 'plugins.no-neck-pain',
 }, {
   ui = {
