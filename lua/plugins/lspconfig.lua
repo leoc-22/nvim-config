@@ -168,7 +168,7 @@ return {
         html = {},
         terraformls = {},
         jsonls = {},
-        yamlls = {},
+        -- yamlls = {},
         helm_ls = {},
 
         lua_ls = {
