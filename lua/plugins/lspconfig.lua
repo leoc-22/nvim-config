@@ -31,7 +31,6 @@ return {
     config = function()
       -- NOTE: uncomment to use blink.cmp instead of cmp
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      require('lspconfig').lua_ls.setup { capabilites = capabilities }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -210,8 +209,15 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            local server_capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            local server_config = vim.tbl_deep_extend('force', {}, server, { capabilities = server_capabilities })
+            if vim.lsp and vim.lsp.enable then
+              vim.lsp.config(server_name, server_config)
+              vim.lsp.enable(server_name)
+            else
+              local lspconfig = require('lspconfig')
+              lspconfig[server_name].setup(server_config)
+            end
           end,
         },
       }
