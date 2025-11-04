@@ -67,6 +67,7 @@ return {
               'rg',
               '--files',
               '--hidden',
+              '--no-ignore-vcs',  -- Ignore .gitignore to show .env files
               '--glob', '!**/.git/*',
               '--glob', '!**/node_modules/*',
               '--glob', '!**/dist/*',
