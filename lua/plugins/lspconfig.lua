@@ -154,7 +154,35 @@ return {
       local servers = {
         -- clangd = {},
         gopls = {},
-        pyright = {},
+        pyright = {
+          before_init = function(_, config)
+            local path = require('lspconfig').util.path
+            -- Try to find Python in virtual environment
+            local venv_paths = {
+              path.join(config.root_dir, '.venv', 'bin', 'python'),
+              path.join(config.root_dir, 'venv', 'bin', 'python'),
+              path.join(config.root_dir, '.env', 'bin', 'python'),
+              path.join(config.root_dir, 'env', 'bin', 'python'),
+            }
+
+            for _, venv_python in ipairs(venv_paths) do
+              if vim.fn.executable(venv_python) == 1 then
+                config.settings.python.pythonPath = venv_python
+                break
+              end
+            end
+          end,
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'workspace',
+                typeCheckingMode = 'basic',
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
