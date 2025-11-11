@@ -19,7 +19,7 @@ require('lazy').setup({
   require 'plugins.blink',
   require 'plugins.oil',
   require 'plugins.markview',
-  -- require 'plugins.dropbar',
+  require 'plugins.dropbar',
   require 'plugins.lualine',
   require 'plugins.diff-view',
   require 'plugins.lsp-lines',
