@@ -18,7 +18,7 @@ end
 return {
   'sindrets/diffview.nvim',
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
-  config = function()
-    vim.keymap.set('n', '<leader>dv', toggle_diffview, { noremap = true, silent = true, desc = 'Toggle Diffview' })
-  end,
+  keys = {
+    { '<leader>dv', toggle_diffview, desc = 'Toggle Diffview' },
+  },
 }
