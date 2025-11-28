@@ -28,7 +28,8 @@ require('lazy').setup({
   require 'plugins.harpoon',
   require 'plugins.harpoon-files',
   require 'plugins.no-neck-pain',
-  require 'plugins.uv'
+  require 'plugins.uv',
+  require 'plugins.colorful-winsep'
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
