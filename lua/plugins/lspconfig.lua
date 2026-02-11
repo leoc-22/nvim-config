@@ -153,7 +153,7 @@ return {
         terraformls = {},
         jsonls = {},
         -- yamlls = {},
-        helm_ls = {},
+        -- helm_ls = {},
 
         lua_ls = {
           -- cmd = { ... },
