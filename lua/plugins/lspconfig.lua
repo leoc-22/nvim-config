@@ -185,14 +185,16 @@ return {
       --  You can press `g?` for help in this menu.
       require('mason').setup()
 
-      -- You can add other tools here that you want Mason to install
-      -- for you, so that they are available from within Neovim.
-      local ensure_installed = vim.tbl_keys(servers and formatters or {})
+      -- Keep LSP servers and external tools separate: mason-lspconfig only accepts server names.
+      local ensure_lsp_installed = vim.tbl_keys(servers)
+      local ensure_tool_installed = vim.tbl_keys(formatters)
 
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup {
+        ensure_installed = vim.list_extend(vim.deepcopy(ensure_lsp_installed), ensure_tool_installed),
+      }
 
       require('mason-lspconfig').setup {
-        ensure_installed = ensure_installed,
+        ensure_installed = ensure_lsp_installed,
         automatic_installation = true,
         handlers = {
           function(server_name)
