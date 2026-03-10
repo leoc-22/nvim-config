@@ -36,10 +36,31 @@ return {
           --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
-          local map = function(keys, func, desc, mode)
+          local map = function(keys, func, desc, mode, opts)
+            if type(mode) == 'table' and not vim.islist(mode) then
+              opts = mode
+              mode = 'n'
+            end
+
             mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+            opts = opts or {}
+            opts.buffer = event.buf
+            opts.desc = 'LSP: ' .. desc
+            vim.keymap.set(mode, keys, func, opts)
           end
+
+          -- Neovim 0.11 adds buffer-local `gr*` LSP maps on attach.
+          -- Remove them here so our shorter `gr` map does not get blocked by
+          -- longer prefix matches in the same buffer.
+          local buf_del = function(mode, lhs)
+            pcall(vim.keymap.del, mode, lhs, { buffer = event.buf })
+          end
+
+          buf_del('n', 'grn')
+          buf_del('n', 'grr')
+          buf_del('n', 'gri')
+          buf_del({ 'n', 'x' }, 'gra')
+          buf_del('n', 'grt')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
@@ -47,7 +68,7 @@ return {
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences', 'n', { nowait = true })
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
