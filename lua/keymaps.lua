@@ -2,7 +2,9 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking replaced text' 
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open diagnostic [E]rror float' })
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = 'Open diagnostic [E]rror float' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -30,20 +32,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
--- keymap for doing the above
-local job_id = 0
 vim.keymap.set('n', '<space>tt', function()
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd 'J'
   vim.api.nvim_win_set_height(0, 10)
-
-  job_id = vim.bo.channel
-end)
-
--- use this after you have brought out the terminal using the above keymap
-vim.keymap.set('n', '<space>example', function()
-  vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
 end)
 
 local typos = { 'W', 'Wq', 'WQ', 'Wqa', 'WQa', 'WQA', 'WqA', 'Q', 'Qa', 'QA' }
