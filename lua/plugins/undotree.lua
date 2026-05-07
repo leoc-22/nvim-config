@@ -1,0 +1,7 @@
+return {
+  'jiaoshijie/undotree',
+  opts = {},
+  keys = {
+    { '<leader>u', function() require('undotree').toggle() end, desc = 'Toggle [U]ndo tree' },
+  },
+}

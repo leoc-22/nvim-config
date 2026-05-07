@@ -25,6 +25,8 @@ require('lazy').setup({
   require 'plugins.lsp-lines',
   require 'plugins.trouble',
   require 'plugins.indent-blankline',
+  require 'plugins.context',
+  require 'plugins.undotree',
   require 'plugins.harpoon',
   require 'plugins.harpoon-files',
   require 'plugins.no-neck-pain',
