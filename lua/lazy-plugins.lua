@@ -21,7 +21,6 @@ require('lazy').setup({
   require 'plugins.markview',
   require 'plugins.dropbar',
   require 'plugins.lualine',
-  require 'plugins.diff-view',
   require 'plugins.fugitive',
   require 'plugins.lsp-lines',
   require 'plugins.trouble',
