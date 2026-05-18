@@ -2,7 +2,7 @@ return {
   'tpope/vim-fugitive',
   cmd = { 'Git', 'G', 'Gdiffsplit', 'Gvdiffsplit', 'Gedit', 'Gread', 'Gwrite', 'Ggrep', 'GMove', 'GRename', 'GDelete' },
   keys = {
-    { '<leader>hc', '<cmd>Gdiffsplit!<CR>', desc = 'git [c]onflict 3-way diff' },
+    { '<leader>hc', '<cmd>Gvdiffsplit!<CR>', desc = 'git [c]onflict vertical 3-way diff' },
     { '<leader>ho', '<cmd>diffget //2<CR>', desc = 'git conflict take [o]urs' },
     { '<leader>ht', '<cmd>diffget //3<CR>', desc = 'git conflict take [t]heirs' },
   },
