@@ -2,7 +2,9 @@ vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking replaced text' 
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<leader>l', vim.diagnostic.open_float, { desc = 'Open diagnostic [L]ist inline error' })
+vim.keymap.set('n', '<leader>e', function()
+  vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = 'Open diagnostic [E]rror float' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -12,13 +14,6 @@ vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buf
 
 vim.keymap.set('n', '<C-a>', 'gg<S-v>G', { noremap = true })
 vim.keymap.set('v', '<C-a>', '<Nop>', { noremap = true })
-
--- Disable the default LSP key mappings introduced in Neovim 0.11.0
-vim.keymap.del('n', 'grn') -- Disable rename mapping
-vim.keymap.del('n', 'grr') -- Disable references mapping
-vim.keymap.del('n', 'gri') -- Disable implementation mapping
-vim.keymap.del('n', 'gra') -- Disable code action mapping
-vim.keymap.del('n', 'grt') -- Disable type definition mapping
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -37,20 +32,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
--- keymap for doing the above
-local job_id = 0
 vim.keymap.set('n', '<space>tt', function()
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd 'J'
   vim.api.nvim_win_set_height(0, 10)
-
-  job_id = vim.bo.channel
-end)
-
--- use this after you have brought out the terminal using the above keymap
-vim.keymap.set('n', '<space>example', function()
-  vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
 end)
 
 local typos = { 'W', 'Wq', 'WQ', 'Wqa', 'WQa', 'WQA', 'WqA', 'Q', 'Qa', 'QA' }

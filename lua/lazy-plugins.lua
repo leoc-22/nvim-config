@@ -21,14 +21,15 @@ require('lazy').setup({
   require 'plugins.markview',
   require 'plugins.dropbar',
   require 'plugins.lualine',
-  require 'plugins.diff-view',
+  require 'plugins.fugitive',
   require 'plugins.lsp-lines',
   require 'plugins.trouble',
   require 'plugins.indent-blankline',
+  require 'plugins.context',
+  require 'plugins.undotree',
   require 'plugins.harpoon',
   require 'plugins.harpoon-files',
   require 'plugins.no-neck-pain',
-  require 'plugins.uv',
   require 'plugins.colorful-winsep'
 }, {
   ui = {

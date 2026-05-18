@@ -19,7 +19,7 @@ return {
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
-      require('mini.pairs').setup()
+      -- require('mini.pairs').setup()
 
       require('mini.files').setup {
         windows = {
