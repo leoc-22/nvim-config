@@ -2,34 +2,48 @@ return {
   'rebelot/kanagawa.nvim',
   priority = 1000,
 
-  -- config = function()
-  --   require('kanagawa').setup({
-  --     compile = false,  -- enable compiling the colorscheme
-  --     undercurl = true, -- enable undercurls
-  --     commentStyle = { italic = true },
-  --     functionStyle = {},
-  --     keywordStyle = { italic = true },
-  --     statementStyle = { bold = true },
-  --     typeStyle = {},
-  --     transparent = false,   -- do not set background color
-  --     dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
-  --     terminalColors = true, -- define vim.g.terminal_color_{0,17}
-  --     colors = {             -- add/modify theme and palette colors
-  --       palette = {},
-  --       theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-  --     },
-  --     overrides = function(colors) -- add/modify highlights
-  --       return {}
-  --     end,
-  --     theme = "wave",  -- Load "wave" theme
-  --     background = {   -- map the value of 'background' option to a theme
-  --       dark = "wave", -- try "dragon" !
-  --       light = "lotus"
-  --     },
-  --   })
-  -- end,
+  config = function()
+    local highlight_bg = '#dcd7ba'
+    local highlight_fg = '#1f1f28'
 
-  init = function()
-    vim.cmd.colorscheme 'kanagawa-wave'
+    require('kanagawa').setup({
+      compile = false,
+      undercurl = true,
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true },
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,
+      dimInactive = false,
+      terminalColors = true,
+      colors = {
+        palette = {
+          fujiGray = '#c8c093',
+        },
+        theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+      },
+      overrides = function()
+        return {
+          Visual = { bg = highlight_bg, fg = highlight_fg },
+          VisualNOS = { bg = highlight_bg, fg = highlight_fg },
+          Search = { bg = highlight_bg, fg = highlight_fg },
+          CurSearch = { bg = highlight_bg, fg = highlight_fg },
+          IncSearch = { bg = highlight_bg, fg = highlight_fg },
+          TelescopeMatching = { bg = highlight_bg, fg = highlight_fg },
+          TelescopeMultiSelection = { bg = highlight_bg, fg = highlight_fg },
+          TelescopePreviewLine = { bg = highlight_bg, fg = highlight_fg },
+          TelescopeSelection = { bg = highlight_bg, fg = highlight_fg },
+          TelescopeSelectionCaret = { bg = highlight_bg, fg = highlight_fg },
+        }
+      end,
+      theme = 'wave',
+      background = {
+        dark = 'wave',
+        light = 'lotus',
+      },
+    })
+
+    vim.cmd.colorscheme 'kanagawa'
   end,
 }

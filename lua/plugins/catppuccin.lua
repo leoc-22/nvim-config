@@ -1,46 +1,38 @@
 return {
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
 
-    config = function()
-      require('catppuccin').setup {
-        integrations = {
-          blink_cmp = true,
-          gitsigns = true,
-          treesitter = true,
-          dropbar = {
-            enabled = true,
-            color_mode = true,
-          },
+  config = function()
+    require('catppuccin').setup({
+      flavour = 'mocha',
+      background = {
+        light = 'latte',
+        dark = 'mocha',
+      },
+      integrations = {
+        blink_cmp = {
+          style = 'bordered',
         },
-        color_overrides = {
-          mocha = {},
+        gitsigns = true,
+        treesitter = true,
+        dropbar = {
+          enabled = true,
+          color_mode = true,
         },
-        highlight_overrides = {
-          mocha = function()
-            return {
-              LineNr = { fg = 'gray' },
-              CursorLineNr = { fg = 'white' },
-              -- WinSeparator = { fg = 'gray' },
-            }
-          end,
-        },
-      }
-    end,
+      },
+      highlight_overrides = {
+        mocha = function()
+          return {
+            LineNr = { fg = 'gray' },
+            CursorLineNr = { fg = 'white' },
+          }
+        end,
+      },
+    })
 
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end,
-  },
+    vim.cmd.colorscheme 'catppuccin-nvim'
+  end,
 }
 
 -- vim: ts=2 sts=2 sw=2 et
