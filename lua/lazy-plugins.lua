@@ -8,6 +8,7 @@ require('lazy').setup({
   --   require 'plugins/cmp'
   require 'plugins.gitsigns',
   require 'plugins.which-key',
+  require 'plugins.fff',
   require 'plugins.telescope',
   require 'plugins.lspconfig',
   require 'plugins.conform',
