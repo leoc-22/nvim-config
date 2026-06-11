@@ -12,7 +12,7 @@ return {
         width = 0.7,
         prompt_position = 'top', -- or 'top'
         preview_position = 'bottom',
-        preview_size = 0.7,
+        preview_size = 0.6,
       },
       preview = {
         line_numbers = true,

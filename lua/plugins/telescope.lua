@@ -68,9 +68,15 @@ return {
         },
 
         defaults = {
-          layout_strategy = 'vertical',
+          -- layout_strategy = 'vertical',
           layout_config = {
             preview_cutoff = 33,
+            horizontal = {
+              preview_width = 0.6,
+            },
+            vertical = {
+              preview_height = 0.6,
+            },
           },
         },
         extensions = {
