@@ -6,6 +6,9 @@ return {
     border = {
       enable = true,
     },
+    folds = {
+      folded = false,
+    },
   },
 }
 
