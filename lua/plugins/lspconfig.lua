@@ -28,19 +28,6 @@ return {
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
-      -- Keep custom `gr` mapped to Telescope references. Nvim 0.12 creates
-      -- global `gr*` LSP defaults at startup, so clear them once up front.
-      for _, default_map in ipairs {
-        { 'n', 'grn' },
-        { 'n', 'grr' },
-        { 'n', 'gri' },
-        { { 'n', 'x' }, 'gra' },
-        { 'n', 'grt' },
-        { 'n', 'grx' },
-      } do
-        pcall(vim.keymap.del, default_map[1], default_map[2])
-      end
-
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -74,9 +61,6 @@ return {
 
           -- Find references for the word under your cursor.
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences', 'n', { nowait = true })
-
-          -- Show documentation for the symbol under your cursor.
-          map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
@@ -233,13 +217,8 @@ return {
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             local server_capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             local server_config = vim.tbl_deep_extend('force', {}, server, { capabilities = server_capabilities })
-            if vim.lsp and vim.lsp.enable then
-              vim.lsp.config(server_name, server_config)
-              vim.lsp.enable(server_name)
-            else
-              local lspconfig = require('lspconfig')
-              lspconfig[server_name].setup(server_config)
-            end
+            vim.lsp.config(server_name, server_config)
+            vim.lsp.enable(server_name)
           end,
         },
       }
