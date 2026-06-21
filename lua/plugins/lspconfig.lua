@@ -60,7 +60,7 @@ return {
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences', 'n', { nowait = true })
+          map('gr', '<cmd>Glance references<CR>', '[G]oto [R]eferences', 'n', { nowait = true })
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
