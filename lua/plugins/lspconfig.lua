@@ -28,6 +28,19 @@ return {
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      -- Keep custom `gr` mapped to Telescope references. Nvim 0.12 creates
+      -- global `gr*` LSP defaults at startup, so clear them once up front.
+      for _, default_map in ipairs {
+        { 'n', 'grn' },
+        { 'n', 'grr' },
+        { 'n', 'gri' },
+        { { 'n', 'x' }, 'gra' },
+        { 'n', 'grt' },
+        { 'n', 'grx' },
+      } do
+        pcall(vim.keymap.del, default_map[1], default_map[2])
+      end
+
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
@@ -48,19 +61,6 @@ return {
             opts.desc = 'LSP: ' .. desc
             vim.keymap.set(mode, keys, func, opts)
           end
-
-          -- Neovim 0.11 adds buffer-local `gr*` LSP maps on attach.
-          -- Remove them here so our shorter `gr` map does not get blocked by
-          -- longer prefix matches in the same buffer.
-          local buf_del = function(mode, lhs)
-            pcall(vim.keymap.del, mode, lhs, { buffer = event.buf })
-          end
-
-          buf_del('n', 'grn')
-          buf_del('n', 'grr')
-          buf_del('n', 'gri')
-          buf_del({ 'n', 'x' }, 'gra')
-          buf_del('n', 'grt')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.name == 'pyright' then
