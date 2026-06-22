@@ -33,6 +33,9 @@ return {
           TelescopeMatching = { bg = highlight_bg, fg = highlight_fg },
           TelescopeMultiSelection = { bg = highlight_bg, fg = highlight_fg },
           TelescopePreviewLine = { bg = highlight_bg, fg = highlight_fg },
+          -- fff live_grep preview pins the match line with CursorLine
+          CursorLine = { bg = highlight_bg },
+          CursorLineNr = { fg = highlight_fg, bold = true },
           TelescopeSelection = { bg = highlight_bg, fg = highlight_fg },
           TelescopeSelectionCaret = { bg = highlight_bg, fg = highlight_fg },
         }

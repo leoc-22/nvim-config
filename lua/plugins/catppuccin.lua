@@ -26,6 +26,10 @@ return {
           return {
             LineNr = { fg = 'gray' },
             CursorLineNr = { fg = 'white' },
+            CursorLine = { bg = '#45475a' },
+            -- fff preview + grep matches use IncSearch; mantle fg reads as black
+            IncSearch = { bg = '#89dceb', fg = '#11111b' },
+            Search = { bg = '#89b4fa', fg = '#11111b' },
           }
         end,
       },

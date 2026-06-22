@@ -5,13 +5,17 @@ return {
       require('fff.download').download_or_build_binary()
     end,
     lazy = false,
+    config = function(_, opts)
+      require('fff').setup(opts)
+      require('util.fff_preview_hl').setup()
+    end,
     opts = {
       prompt_vim_mode = false,
       layout = {
         height = 0.9,
         width = 0.7,
-        prompt_position = 'top', -- or 'top'
-        preview_position = 'bottom',
+        -- prompt_position = 'top', -- or 'top'
+        -- preview_position = 'bottom',
         preview_size = 0.6,
       },
       preview = {
