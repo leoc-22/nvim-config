@@ -49,43 +49,35 @@ return {
             vim.keymap.set(mode, keys, func, opts)
           end
 
-          -- Neovim 0.11 adds buffer-local `gr*` LSP maps on attach.
-          -- Remove them here so our shorter `gr` map does not get blocked by
-          -- longer prefix matches in the same buffer.
-          local buf_del = function(mode, lhs)
-            pcall(vim.keymap.del, mode, lhs, { buffer = event.buf })
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client and client.name == 'pyright' then
+            client.server_capabilities.hoverProvider = false
           end
-
-          buf_del('n', 'grn')
-          buf_del('n', 'grr')
-          buf_del('n', 'gri')
-          buf_del({ 'n', 'x' }, 'gra')
-          buf_del('n', 'grt')
 
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
 
           -- Find references for the word under your cursor.
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences', 'n', { nowait = true })
+          map('gr', '<cmd>Glance references<CR>', '[G]oto [R]eferences', 'n', { nowait = true })
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ds', vim.lsp.buf.document_symbol, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('<leader>ws', vim.lsp.buf.workspace_symbol, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -104,8 +96,7 @@ return {
           --    See `:help CursorHold` for information about when this is executed
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
@@ -160,6 +151,7 @@ return {
             },
           },
         },
+        jedi_language_server = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -225,13 +217,8 @@ return {
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             local server_capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             local server_config = vim.tbl_deep_extend('force', {}, server, { capabilities = server_capabilities })
-            if vim.lsp and vim.lsp.enable then
-              vim.lsp.config(server_name, server_config)
-              vim.lsp.enable(server_name)
-            else
-              local lspconfig = require('lspconfig')
-              lspconfig[server_name].setup(server_config)
-            end
+            vim.lsp.config(server_name, server_config)
+            vim.lsp.enable(server_name)
           end,
         },
       }

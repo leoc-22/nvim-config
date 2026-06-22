@@ -30,11 +30,6 @@ return {
           Search = { bg = highlight_bg, fg = highlight_fg },
           CurSearch = { bg = highlight_bg, fg = highlight_fg },
           IncSearch = { bg = highlight_bg, fg = highlight_fg },
-          TelescopeMatching = { bg = highlight_bg, fg = highlight_fg },
-          TelescopeMultiSelection = { bg = highlight_bg, fg = highlight_fg },
-          TelescopePreviewLine = { bg = highlight_bg, fg = highlight_fg },
-          TelescopeSelection = { bg = highlight_bg, fg = highlight_fg },
-          TelescopeSelectionCaret = { bg = highlight_bg, fg = highlight_fg },
         }
       end,
       theme = 'wave',
